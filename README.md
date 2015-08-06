@@ -2,4 +2,4 @@
 
 Made with my mentor at [The Dojo](http://dojo.shinobidevs.com).
 
-<tt>rake doc:app</tt>.
+Here is my [nitzan-dojito app](https://nitzan-dojit.herokuapp.com/).
