@@ -5,14 +5,14 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-  end‹
+  end
 
   def new
     @post = Post.new
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :body))
+    @post = current_user.posts.new(params.require(:post).permit(:title, :body))
     if @post.save
       flash[:notice] = "Post was saved."
       redirect_to @post
