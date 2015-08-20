@@ -1,18 +1,39 @@
 <h1><%= markdown @post.title %></h1>
 
 <div class="row">
-  <div class="col-md-8">
-  <small>
-    <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
-    submitted <%= time_ago_in_words(@post.created_at) %> ago by
-    <%= @post.user.name %>
-  </small>
+  <div class="col-md-12">
+    <small>
+      <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+      submitted <%= time_ago_in_words(@post.created_at) %> ago by
+      <%= @post.user.name %>
+    </small>
     <p><%= markdown @post.body %></p>
-     <%= image_tag(@post.image.url) if @post.image? %>
+    <%= image_tag(@post.image.url) if @post.image? %>
   </div>
-  <div class="col-md-4">
-    <% if policy(@post).edit? %>
-      <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+  <div class="col-mod-8">
+    <p> comments count:<%= @comments.count%></p>
+    <% @comments.each do |comment| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= comment.body%>
+        </h4>
+        <small>
+          <%= image_tag(comment.user.avatar.tiny.url) if comment.user.avatar? %>
+          submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %> </br>
+        </small>
+      </div>
+    </div>
     <% end %>
   </div>
+  <div class="col-md-8">
+    <% if policy(@post).edit? %>
+    <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+    <% end %>
+    <p></p>
+    <div>
+     <%= render partial: 'comments/form', locals: {topic: @topic, post: @post} %>
+   </div>
+ </div>
+
 </div>
