@@ -32,6 +32,11 @@ class CommentsController < ApplicationController
     end
   end
 
+
+  def post_url (post)
+    url_for([post.topic, post])
+  end
+
   def comment_params
     params.require(:comment).permit(:body)
   end
