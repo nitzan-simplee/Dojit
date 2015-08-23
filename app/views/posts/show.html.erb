@@ -12,19 +12,8 @@
   </div>
   <div class="col-mod-8">
     <p> comments count:<%= @comments.count%></p>
-    <% @comments.each do |comment| %>
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= comment.body%>
-        </h4>
-        <small>
-          <%= image_tag(comment.user.avatar.tiny.url) if comment.user.avatar? %>
-          submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %> </br>
-        </small>
-      </div>
-    </div>
-    <% end %>
+    <%= render @comments %>
+    <p></p>
   </div>
   <div class="col-md-8">
     <% if policy(@post).edit? %>
