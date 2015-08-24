@@ -23,31 +23,36 @@ class ApplicationPolicy
   end
 
   def update?
-     user.present? && (record.user == user || user.admin?)
+   user.present? && (record.user == user || user.admin?)
+ end
+
+ def edit?
+  update?
+end
+
+def destroy?
+  update?
+end
+
+def scope
+  record.class
+end
+
+private
+def can_moderate?
+  user.present? && (user.moderator? || user.admin? || record.user == user)
+end
+
+class Scope
+  attr_reader :user, :scope
+
+  def initialize(user, scope)
+    @user = user
+    @scope = scope
   end
 
-  def edit?
-    update?
+  def resolve
+    scope
   end
-
-  def destroy?
-    update?
-  end
-
-  def scope
-    record.class
-  end
-
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope
-    end
-  end
+end
 end

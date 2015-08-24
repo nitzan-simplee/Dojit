@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-
-  get 'comments/show'
-
-  get 'comments/edit'
 
   devise_for :users
   resources :users, only:[:update] 
   
   resources :topics do
-    resources :posts, except: [:index] do
+    resources :posts, except: [:index]
+  end
+
+  resources :posts, only: [] do
       resources :comments, only: [:create, :destroy]
     end
-  end
 
   get 'about' => 'welcome#about'
 
