@@ -1,10 +1,12 @@
+require 'rails_helper'
+
 describe Vote do
   describe "validations" do
      
     before do
-      @vote_1 = Vote.new(value: 1) 
-      @vote_min1 = Vote.new((value: -1)
-      @vote2 = Vote.new((value: 2)
+      @vote1 = Vote.new(value: 1) 
+      @vote_min1 = Vote.new(value: -1)
+      @vote2 = Vote.new(value: 2)
     end
 
     describe "value validation" do
