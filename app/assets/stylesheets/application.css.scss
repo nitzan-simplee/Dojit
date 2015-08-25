@@ -1,5 +1,5 @@
-@import "bootstrap";
 @import "bootstrap-sprockets";
+@import "bootstrap";
 
 .user-info{
   margin-top: 9px;
@@ -12,4 +12,8 @@
 .vote-arrows {
   width: 40px;
   text-align: center;
+}
+
+.favorite {
+  margin-top: 20px;
 }
