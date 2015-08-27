@@ -11,8 +11,10 @@
     <%= image_tag(@post.image.url) if @post.image? %>
   </div>
   <div class="col-md-8">
-    <p> Comments count: <%= @comments.count%></p>
-    <%= render partial: 'comments/comment', collection: @comments %>
+    <div ><%= pluralize(@comments.count, 'comment') %></div>
+    <div class="js-comments">
+     <%= render partial: 'comments/comment', collection: @comments %>
+    </div>
     <p></p>
   </div>
   <div class="col-md-8">
@@ -31,7 +33,7 @@
       </small>
     <%= render partial: 'favorites/favorite', locals: { post: @post} %>
     </div>
-    <div>
+    <div class="new-comment">
      <%= render partial: 'comments/form', locals: {topic: @topic, post: @post} %>
    </div>
  </div>
