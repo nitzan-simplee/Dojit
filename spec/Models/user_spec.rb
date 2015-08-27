@@ -16,7 +16,7 @@ describe User do
 
     it "return the appropriate favorite if it exists" do  
       @user.favorites.where(post: @post).create
-    
+
       expect( @user.favorited(@post) ).not_to be_nil
     end
   end
@@ -47,5 +47,6 @@ describe User do
       users = User.top_rated
       expect( users.first.comments_count ).to eq(2)
     end
+
   end
 end
