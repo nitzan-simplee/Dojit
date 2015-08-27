@@ -13,7 +13,7 @@
   </div>
   <div class="col-mod-8">
     <p> comments count:<%= @comments.count%></p>
-    <%= render @comments %>
+    <%= render partial: 'comments/comment', collection: @comments %>
     <p></p>
   </div>
   <div class="col-md-8">
