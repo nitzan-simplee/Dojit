@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe Comment do
-  include TestFactories
 
   describe "after_create" do 
 
     before do
-      @post = associated_post
-      @user = authenticated_user
+      @user = create(:user)
+      @post =  create(:post, user: @user)
       @comment = Comment.new(body: 'my comment', post: @post, user_id: 10000)
+
     end
     # We don't need to change anything for this condition;
     # The email_favorites attribute defaults to true
